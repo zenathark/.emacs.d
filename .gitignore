@@ -9,3 +9,11 @@
 
 # Undo-tree save-files
 *.~undo-tree
+ac-comphist.dat
+auto-save-list
+cache
+company-statistics-cache.el
+elpa
+projectile-bookmarks.eld
+request
+savehist

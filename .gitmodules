@@ -1,0 +1,3 @@
+[submodule "ox-latex-subfigure"]
+	path = ox-latex-subfigure
+	url = git@github.com:zenathark/ox-latex-subfigure
