@@ -9,11 +9,20 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+# Cache and History
 ac-comphist.dat
 auto-save-list
 cache
 company-statistics-cache.el
-elpa
 projectile-bookmarks.eld
 request
 savehist
+.#*
+
+
+# Repository
+elpa
+
+# YouCompleteMe
+ycmd

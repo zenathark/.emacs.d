@@ -1,4 +1,4 @@
-;;; package --- Main config file
+;julia-emacsjulia-emacs;; package --- Main config file
 ;;; Commentary:
 ;;; Code:
 
@@ -7,6 +7,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(company-quickhelp-color-background "light green")
  '(custom-safe-themes
    (quote
     ("1263771faf6967879c3ab8b577c6c31020222ac6d3bac31f331a74275385a452" "100eeb65d336e3d8f419c0f09170f9fd30f688849c5e60a801a1e6addd8216cb" "36746ad57649893434c443567cb3831828df33232a7790d232df6f5908263692" "6145e62774a589c074a31a05dfa5efdf8789cf869104e905956f0cbd7eda9d0e" "fec45178b55ad0258c5f68f61c9c8fd1a47d73b08fb7a51c15558d42c376083d" default)))
@@ -22,7 +23,7 @@
 		  ("convert -trim -density 300 -shave 1x1 %f -quality 100 %O")))))
  '(package-selected-packages
    (quote
-    (eval-sexp-fu yaml-mode julia-mode company-go go-eldoc go-mode helm-mode-manager helm-make helm-projectile helm-gtags counsel-gtags ggtags company-quickhelp racket-mode quack geiser fontawesome haskell-mode web-beautify emmet-mode org-plus-contrib fill-column-indicator modeline-posn julia-repl ein tide pyenv-mode-auto pyenv-mode web-mode cider clojure-mode popup ivy org-ref helm-core company-flx flx ensime ivy-rich xcscope srefactor aggressive-indent auto-highlight-symbol clean-aindent-mode stickyfunc-enhance popwin counsel swiper orgit git-timemachine git-messenger git-link gitconfig-mode gitattributes-mode gitignore-mode evil-magit magit page-break-lines projectile whitespace-cleanup-mode company-statistics company yasnippet smartparens sublimity flycheck exec-path-from-shell highlight-parentheses highlight-numbers open-junk-file rainbow-delimiters vi-tilde-fringe evil-search-highlight-persist evil-matchit evil-exchange evil-anzu evil-visualstar evil-surround evil-nerd-commenter evil-org evil-numbers ace-window ace-link general powerline evil hlinum base16-theme s dash use-package)))
+    (imenu-list flycheck-pos-tip company-ycmd company-ymcd eval-sexp-fu yaml-mode julia-mode company-go go-eldoc go-mode helm-mode-manager helm-make helm-projectile helm-gtags counsel-gtags ggtags company-quickhelp racket-mode quack geiser fontawesome haskell-mode web-beautify emmet-mode org-plus-contrib fill-column-indicator modeline-posn julia-repl ein tide pyenv-mode-auto pyenv-mode web-mode cider clojure-mode popup ivy org-ref helm-core company-flx flx ensime ivy-rich xcscope srefactor aggressive-indent auto-highlight-symbol clean-aindent-mode stickyfunc-enhance popwin counsel swiper orgit git-timemachine git-messenger git-link gitconfig-mode gitattributes-mode gitignore-mode evil-magit magit page-break-lines projectile whitespace-cleanup-mode company-statistics company yasnippet smartparens sublimity flycheck exec-path-from-shell highlight-parentheses highlight-numbers open-junk-file rainbow-delimiters vi-tilde-fringe evil-search-highlight-persist evil-matchit evil-exchange evil-anzu evil-visualstar evil-surround evil-nerd-commenter evil-org evil-numbers ace-window ace-link general powerline evil hlinum base16-theme s dash use-package)))
  '(safe-local-variable-values
    (quote
     ((eval
@@ -42,7 +43,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(defvar utf-translate-cjk-mode)
+(setq utf-translate-cjk-mode)
 ;;; UTF-8
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
 (set-language-environment 'utf-8)
@@ -52,7 +53,7 @@
 (unless (eq system-type 'windows-nt)
   (set-selection-coding-system 'utf-8))
 (prefer-coding-system 'utf-8)
-(set-default 'truncate-lines t)
+(set-default 'truncate-lines nil)
 (setq visible-bell t)
 
 (require 'package)
@@ -67,6 +68,14 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (setq package-enable-at-startup nil)
+
+;; Bootstrap use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; Install package if not existing.
+(setq use-package-always-ensure nil)
 
 (eval-when-compile
   (require 'use-package))
@@ -85,11 +94,11 @@
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
 
-(defvar savehist-file "~/.emacs.d/savehist")
+(setq savehist-file "~/.emacs.d/cache/savehist")
 (savehist-mode 1)
 (setq history-delete-duplicates t)
-(defvar savehist-save-minibuffer-history 1)
-(defvar savehist-additional-variables
+(setq savehist-save-minibuffer-history 1)
+(setq savehist-additional-variables
       '(kill-ring
 	search-ring
 	regexp-search-ring))
@@ -99,9 +108,13 @@
 
 (setq read-quoted-char-radix 16)
 
-(defvar config-dir (expand-file-name "settings/" user-emacs-directory))
-(defvar gists-dir (expand-file-name "gists/" user-emacs-directory))
+(setq config-dir (expand-file-name "settings/" user-emacs-directory))
+(setq gists-dir (expand-file-name "gists/" user-emacs-directory))
 (add-to-list 'load-path config-dir)
+
+;; https://github.com/jojojames/.emacs.d/blob/master/init.el
+;; Set garbage collector 100MB
+(setq gc-cons-threshold 100000000)
 
 
 (require 'global)

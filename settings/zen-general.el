@@ -25,7 +25,11 @@
   :diminish helm-mode
   :ensure t
   :config
+  (setq helm-mode-fuzzy-match t)
+  (setq helm-completion-in-helm-completion-in-region-fuzzy-match t)
   (helm-mode 1))
+
+
 
 (use-package company
   :ensure t
@@ -39,7 +43,22 @@
   :config
   (company-statistics-mode))
 
-(use-package company-quickhelp)
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (company-quickhelp-mode 1)
+  (set-face-attribute company-quickhelp-color-background (plist-get zen/base16-colors :base00))
+  (set-face-attribute company-quickhelp-color-foreground (plist-get zen/base16-colors :base05)))
+
+(use-package pos-tip
+  :ensure t)
+
+(use-package company-ycmd
+  :ensure t
+  :config
+  (company-ycmd-setup)
+  (setq ycmd-server-command `("python" ,(file-truename "~/.emacs.d/ycmd/ycmd/")))
+  (set-variable 'ycmd-global-config (file-truename "~/.emacs.d/global_conf.py")))
 
 (use-package flx
   :ensure t)
@@ -74,7 +93,12 @@
   (push '("^\*WoMan.+\*$" :regexp t               :position bottom                                   ) popwin:special-display-config)
   (push '("*cider-test-report*"      :dedicated t :position bottom :stick t :noselect t   :height 0.4) popwin:special-display-config)
   (push '("*cider-error*"            :dedicated t :position bottom :stick t :noselect t   :height 0.4) popwin:special-display-config)
-  (push '("*Buffer List*"            :dedicated t :position bottom :stick t               :height 0.4) popwin:special-display-config))
+  (push '("*Buffer List*"            :dedicated t :position bottom :stick t               :height 0.4) popwin:special-display-config)
+  (push '("*helm semantic/imenu*"    :dedicated t :position right  :stick t               :height 0.6) popwin:special-display-config)
+  (push '("*Backtrace*"              :dedicated t :position bottom                        :height 0.4) popwin:special-display-config))
+
+(use-package imenu-list
+  :ensure t)
 
 (use-package recentf
   :ensure t

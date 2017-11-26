@@ -38,6 +38,11 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+(use-package flycheck-pos-tip
+  :ensure t
+  :config
+  (flycheck-pos-tip-mode))
+
 (use-package sublimity
   :ensure t
   :config
