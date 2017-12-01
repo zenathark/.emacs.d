@@ -43,7 +43,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(setq utf-translate-cjk-mode)
+
 ;;; UTF-8
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
 (set-language-environment 'utf-8)

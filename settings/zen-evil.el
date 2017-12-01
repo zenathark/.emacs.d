@@ -199,6 +199,8 @@
       "pv" 'projectile-vc
       "sgp" 'helm-projectile-grep)
 
+(nmap "C-p" 'helm-projectile-find-file)
+
 (nmap :prefix evil-leader
       "cc" 'helm-make-projectile
       "cm" 'helm-make)
