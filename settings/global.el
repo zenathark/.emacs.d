@@ -30,7 +30,7 @@
 (defvar zen/font-status)
 (if (eq system-type 'darwin)
     (defvar zen/font-status "DejaVu Sans Mono-12")
-    (defvar zen/font-status "DevaVu Sans Mono-9"))
+    (defvar zen/font-status "DejaVu Sans Mono-9"))
 
 (defvar zen/base16-colors)
 (use-package base16-theme
