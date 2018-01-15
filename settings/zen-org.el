@@ -307,7 +307,7 @@ BODY lambda to be evaluated"
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
 [EXTRA]
-\\usepackage[outputdir=build/slides]{minted}
+\\usepackage[outputdir=build/slides,breaklines,linenos,tabsize=2]{minted}
 \\graphicspath{{./src/resources/img/}}"
 	       ("\\section{%s}" . "\\section*{%s}")
 	       ("\\subsection{%s}" . "\\subsection*{%s}")

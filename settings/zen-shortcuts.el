@@ -1,6 +1,20 @@
 ;;; package --- Shortcuts for all modes based on evil/spacemacs
 ;;; Commentary:
 ;;; Code:
+
+;;------------------------------------------------------------------------------
+;;                               Scala mode
+;;------------------------------------------------------------------------------
+
+(nmap :states '(normal)
+      :keymaps '(evil-operator-state-map)
+      "cs" 'evil-surround-change)
+(vmap "cs" 'evil-surround-region)
+
+(nmap :prefix evil-leader
+      "a" 'evil-numbers/inc-at-pt
+      "x" 'evil-numbers/dec-at-pt)
+
 ;;------------------------------------------------------------------------------
 ;;                               Scala mode
 ;;------------------------------------------------------------------------------
@@ -265,6 +279,10 @@ After evaluating the last sexp, it is replaced by its result."
 		    "gS" 'helm-gtags-show-stack
 		    "gu" 'helm-gtags-update-tags)
 
+(general-define-key :states '(normal)
+		    :keymaps '(go-mode-map)
+		    :prefix evil-command
+		    "ts" 'projectile-toggle-between-implementation-and-test)
 
 (provide 'zen-shortcuts)
 ;;; zen-shortcuts ends here

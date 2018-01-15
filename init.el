@@ -1,4 +1,4 @@
-;julia-emacsjulia-emacs;; package --- Main config file
+;;; package --- Main config file
 ;;; Commentary:
 ;;; Code:
 
@@ -10,7 +10,7 @@
  '(company-quickhelp-color-background "light green")
  '(custom-safe-themes
    (quote
-    ("1263771faf6967879c3ab8b577c6c31020222ac6d3bac31f331a74275385a452" "100eeb65d336e3d8f419c0f09170f9fd30f688849c5e60a801a1e6addd8216cb" "36746ad57649893434c443567cb3831828df33232a7790d232df6f5908263692" "6145e62774a589c074a31a05dfa5efdf8789cf869104e905956f0cbd7eda9d0e" "fec45178b55ad0258c5f68f61c9c8fd1a47d73b08fb7a51c15558d42c376083d" default)))
+    ("c9f102cf31165896631747fd20a0ca0b9c64ecae019ce5c2786713a5b7d6315e" "1263771faf6967879c3ab8b577c6c31020222ac6d3bac31f331a74275385a452" "100eeb65d336e3d8f419c0f09170f9fd30f688849c5e60a801a1e6addd8216cb" "36746ad57649893434c443567cb3831828df33232a7790d232df6f5908263692" "6145e62774a589c074a31a05dfa5efdf8789cf869104e905956f0cbd7eda9d0e" "fec45178b55ad0258c5f68f61c9c8fd1a47d73b08fb7a51c15558d42c376083d" default)))
  '(org-preview-latex-process-alist
    (quote
     ((imagemagick :programs
@@ -43,7 +43,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-(setq utf-translate-cjk-mode)
 ;;; UTF-8
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
 (set-language-environment 'utf-8)

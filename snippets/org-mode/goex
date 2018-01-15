@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: go block
+# key: _goex
+# --
+#+begin_src go :exports code :tangle ../examples/golang/$1.go
+$0
+#+end_src
