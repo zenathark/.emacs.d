@@ -11,7 +11,9 @@
   :ensure t)
 
 (use-package java-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'java-mode-hook 'smartparens-mode))
 
 (use-package gradle-mode
   :ensure t)
@@ -34,4 +36,5 @@
 
 ;; (add-hook 'scala-mode-hook 'set-junk-directory)
 ;; (setq (make-local-variable 'open-junk-file-directory) "~/.emacs.d/cache/junk/%Y/%m/%d-%H%M%S.sc")
-;;; zen-scala ends here
+
+;;; zen-java ends here

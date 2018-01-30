@@ -10,8 +10,6 @@
 			    (add-hook 'before-save-hook 'gofmt-before-save)
 			    (setq tab-width 4)
 			    (setq indent-tabs-mode 1)
-			    (fci-mode)
-			    (set-fill-column 120)
 			    'smartparens-mode)))
 
 (sp-local-pair 'go-mode "(" nil :post-handlers '((create-newline-and-enter-sexp "RET")))

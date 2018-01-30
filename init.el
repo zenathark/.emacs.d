@@ -120,7 +120,7 @@
 (require 'zen-general)
 (require 'programming)
 (require 'zen-evil)
-(require 'scala)
+(require 'zen-scala)
 (require 'zen-clojure)
 (require 'zen-org)
 (require 'zen-elisp)
@@ -131,6 +131,7 @@
 (require 'zen-racket)
 (require 'zen-go)
 (require 'zen-rust)
+(require 'zen-java)
 (require 'zen-shortcuts)
 
 ;;; init.el ends here
