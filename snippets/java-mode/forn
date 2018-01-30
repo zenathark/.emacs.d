@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: forn
+# key: _forn
+# --
+for (int ${1:i} = ${2:0}; $1 ${3:<} ${4:n}; $1${5:++}) {
+     $0
+}

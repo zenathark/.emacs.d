@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Main Class
+# key: _mclass
+# --
+class $1 {
+    public static void main(String... args[]) {
+	 $0
+    }
+}
