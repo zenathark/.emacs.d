@@ -13,6 +13,12 @@
 (use-package java-mode
   :ensure t)
 
+(use-package gradle-mode
+  :ensure t)
+
+(use-package groovy-mode
+  :ensure t)
+
 (add-to-list 'exec-path "/usr/local/bin/")
 
 (setq ensime-search-interface 'helm)

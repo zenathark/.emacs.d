@@ -1,0 +1,51 @@
+# -*- mode: snippet -*-
+# name: Untit Test Hacker Rank
+# key: _htest
+# --
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`} {
+    @Test
+    public void testDataSets() {
+	ClassLoader classLoader = getClass().getClassLoader();
+	File inputs = new File(classLoader.getResource("inputs/${2:`(replace-regexp-in-string "test" "" (downcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name)))))`}").getFile());
+	File outputs = new File(classLoader.getResource("outputs/$2").getFile());
+	File[] datasets = inputs.listFiles();
+	File[] expectedsets = outputs.listFiles();
+	InputStream stdin = System.in;
+	PrintStream stdout = System.out;
+	for (int i = 0; i < datasets.length; i++) {
+	    try {
+		byte[] expected = new byte[(int) expectedsets[i].length()];
+		(new FileInputStream(expectedsets[i])).read(expected);
+		System.setIn(new FileInputStream(datasets[i]));
+		ByteArrayOutputStream actual = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(actual));
+		${3:`(replace-regexp-in-string "Test" "" (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`}.${4:main}();
+		System.setIn(stdin);
+		System.setOut(stdout);
+		String actualOutput = new String(actual.toByteArray());
+		String expectedOutput = new String(expected);
+		String[] aoLines = actualOutput.split("\n");
+		String[] eoLines = expectedOutput.split("\n");
+		assertEquals("Should have the same amount of answers", aoLines.length, eoLines.length);
+		for (int j = 0; j < aoLines.length; j++) {
+		    assertEquals(String.format("Dataset No. %d, Line No. %d", i, j), aoLines[j], eoLines[j]);
+		}
+	    } catch (FileNotFoundException e) {
+		e.printStackTrace();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    } finally {
+		System.setIn(stdin);
+		System.setOut(stdout);
+	    }
+	}
+    }
+}

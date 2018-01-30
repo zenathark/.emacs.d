@@ -9,7 +9,7 @@
 ;;	     (push "*cider-test-report*" popwin:special-display-config))
 ;;; Code:
 (use-package julia-mode
-  :ensure nil
+  :ensure t
   :mode "\\.jl\\'")
 
 ;; (use-package ein

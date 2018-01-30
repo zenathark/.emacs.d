@@ -301,13 +301,15 @@ BODY lambda to be evaluated"
 	       ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
 	       ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
 
+;\\usepackage[outputdir=build/slides,breaklines,linenos,tabsize=2]{minted}
 (add-to-list 'org-latex-classes
 	     '("beamer-cli"
 	       "\\documentclass\[presentation\]{beamer}
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
 [EXTRA]
-\\usepackage[outputdir=build/slides,breaklines,linenos,tabsize=2]{minted}
+\\usepackage[outputdir=build/slides,langlinenos]{minted}
+\\setminted[go]{breaklines,linenos,tabsize=2}
 \\graphicspath{{./src/resources/img/}}"
 	       ("\\section{%s}" . "\\section*{%s}")
 	       ("\\subsection{%s}" . "\\subsection*{%s}")

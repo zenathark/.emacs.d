@@ -284,5 +284,9 @@ After evaluating the last sexp, it is replaced by its result."
 		    :prefix evil-command
 		    "ts" 'projectile-toggle-between-implementation-and-test)
 
+(general-define-key :states '(insert normal)
+		    :keymaps '(yas-minor-mode-map)
+		    "C-\\" 'yas-expand)
+
 (provide 'zen-shortcuts)
 ;;; zen-shortcuts ends here

@@ -227,6 +227,7 @@
       "wpp" 'popwin:close-popup-window
       "wpc" '(lambda () (interactive) (popwin:display-buffer "*compilation*")))
 
+
 (general-mmap "l" 'evil-search-next)
 (general-mmap "k" 'evil-find-char-to)
 (general-mmap "d" 'evil-backward-char)
@@ -239,6 +240,7 @@
 (general-nvmap "h" 'evil-next-visual-line)
 (general-nvmap "t" 'evil-previous-visual-line)
 (general-nvmap "n" 'evil-forward-char)
+(general-nvmap "j" 'evil-delete)
 (general-nvmap :states '(operator visual) "j" 'evil-delete)
 (general-define-key "C-x C-b" 'helm-buffers-list)
 

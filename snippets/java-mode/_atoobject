@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: List toObject Apache ArrayUtils
+# key: _atoobject
+# --
+public static $1[] toObject($2[] array) {
+    if (array == null) {
+	return null;
+    } else if (array.length == 0) {
+	return new $1[0];
+    }
+    final $1[] result = new $1[array.length];
+    for (int i = 0; i < array.length; i++) {
+	 result[i] = $1.valueOf(array[i]);
+    }
+    return result;
+}
+$0
