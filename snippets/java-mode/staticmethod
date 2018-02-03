@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: New Public static method Method
+# key: psm
+# --
+public static ${1:void} ${2:name}(${3:args}) {
+    $0
+}

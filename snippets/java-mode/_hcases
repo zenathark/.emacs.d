@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Main Hacker Rank Class
-# key: _hpc
+# key: hpc
 # --
 import java.io.*;
 import java.util.*;
@@ -16,7 +16,7 @@ public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file
     public static void main(String... args) {
 	Scanner in = new Scanner(System.in);
 	int ${3:q} = in.next${4:Int}();
-	for (int ${5:i}; $5 < $3; $5++) {
+	for (int ${5:i}=${6:0}; $5 < $3; $5++) {
 	    $0
 	    String result = solve();
 	    System.out.println(result);

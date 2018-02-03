@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Public Property
+# key: pp
+# --
+public $1 $2${3:;} $0

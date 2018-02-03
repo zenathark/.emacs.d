@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: ptc
+# key: ptc
+# --
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`} {
+    @Test
+    public void ${2:test}() {
+    	   $0
+    }
+}

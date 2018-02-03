@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: List toObject Apache ArrayUtils
-# key: _atoobject
+# key: toobject
 # --
 public static $1[] toObject($2[] array) {
     if (array == null) {

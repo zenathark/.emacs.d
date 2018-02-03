@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Main Class
-# key: pc
+# key: mcl
 # --
 public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`} {
     public static void main(String... args) {

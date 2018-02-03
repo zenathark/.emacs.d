@@ -1,3 +1,7 @@
+;;; zen-scala.el --- Scala mode configuration
+;;; Commentary:
+;;; Code:
+
 (use-package ensime
   :ensure t
   :pin melpa-stable)
@@ -21,4 +25,6 @@
 
 ;; (add-hook 'scala-mode-hook 'set-junk-directory)
 ;; (setq (make-local-variable 'open-junk-file-directory) "~/.emacs.d/cache/junk/%Y/%m/%d-%H%M%S.sc")
-(provide 'scala)
+(provide 'zen-scala)
+
+;;; zen-scala ends here

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Untit Test Hacker Rank
-# key: _htest
+# key: ht
 # --
 import java.io.*;
 import java.util.*;
@@ -36,7 +36,7 @@ public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file
 		String[] eoLines = expectedOutput.split("\n");
 		assertEquals("Should have the same amount of answers", aoLines.length, eoLines.length);
 		for (int j = 0; j < aoLines.length; j++) {
-		    assertEquals(String.format("Dataset No. %d, Line No. %d", i, j), aoLines[j], eoLines[j]);
+		    assertEquals(String.format("Dataset %s, Line No. %d", expectedsets[i].getName(), j), eoLines[j], aoLines[j]);
 		}
 	    } catch (FileNotFoundException e) {
 		e.printStackTrace();
