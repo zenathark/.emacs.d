@@ -288,5 +288,67 @@ After evaluating the last sexp, it is replaced by its result."
 		    :keymaps '(yas-minor-mode-map)
 		    "C-\\" 'yas-expand)
 
+
+;;------------------------------------------------------------------------------
+;;                               Java Mode
+;;------------------------------------------------------------------------------
+
+(general-define-key :states '(normal)
+		    :keymaps '(java-mode-map)
+		    "," 'hydra-java/body
+		    "gd" 'meghanada-jump-declaration
+		    "gb" 'meghanada-back-jump)
+
+(defhydra hydra-java (:hint nil :exit q)
+"
+^Build^          ^Code Info^             ^Meghanada Actions^
+^^^^^^-------------------------------------------------------
+_c_: compile     _y_: type               _m_: meghanada restart
+_t_: test        _i_: optimize import    _R_: meghanada reference
+_r_: run task    _g_: Magit              _z_: leave
+					 _q_: exit
+"
+  ("c" hydra-java-compile/body)
+  ("t" hydra-java-test/body)
+  ("r" meghanada-run-task)
+  ("y" meghanada-typeinfo)
+  ("i" meghanada-optimize-import)
+  ("m" meghanada-restart)
+  ("R" meghanada-reference)
+  ("g" magit-status)
+  ("z" nil "leave")
+  ("q" exit "quit" :color blue))
+
+(defhydra hydra-java-compile (:hint nil :exit q)
+"
+^Compile^
+^^^^^^-----------
+_c_: file
+_t_: project
+_z_: leave
+_q_: quit
+"
+  ("c" meghanada-compile-file)
+  ("t" meghanada-compile-project)
+  ("z" nil "leave")
+  ("q" exit "quit" :color blue))
+
+(defhydra hydra-java-test (:hint nil :exit q)
+"
+^Tests^
+^^^^^^-----------
+_c_: Switch JUnit test case
+_C_: Run JUnit class
+_c_: Run JUnit test case
+_r_: Run task
+_z_: leave
+_q_: quit
+"
+  ("s" meghanada-switch-testcase)
+  ("C" meghanada-run-junit-class)
+  ("c" meghanada-run-junit-test-case)
+  ("r" meghanada-run-junit-recent)
+  ("z" nil "leave")
+  ("q" exit "quit" :color blue))
 (provide 'zen-shortcuts)
 ;;; zen-shortcuts ends here

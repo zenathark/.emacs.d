@@ -34,8 +34,9 @@
 	      (google-make-newline-indent)
 	      (meghanada-mode t)
 	      (smartparens-mode t)
-	      (rainbow-delimiter-mode)
+	      (rainbow-delimiters-mode)
 	      (highlight-symbol-mode t)
+	      (gradle-mode t)
 	      (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
   :config
   (setq indent-tabs-mode nil)
@@ -48,13 +49,16 @@
   :ensure t)
 
 (use-package groovy-mode
-  :ensure t)
+  :ensure t
+  :init
+  (add-hook 'groovy-mode-hook
+	    (lambda ()
+	      (smartparens-mode t)
+	      (rainbow-delimiters-mode)
+	      (highlight-symbol-mode t)
+	      (gradle-mode t))))
 
 (add-to-list 'exec-path "/usr/local/bin/")
-
-;; (setq ensime-search-interface 'helm)
-;; (setq ensime-eldoc-hints 'all)
-;; (add-hook 'java-mode-hook 'turn-on-eldoc-mode)
 
 (sp-local-pair 'java-mode "(" nil :post-handlers '((create-newline-and-enter-sexp "RET")))
 (sp-local-pair 'java-mode "{" nil :post-handlers '((create-newline-and-enter-sexp "RET")))
@@ -65,5 +69,36 @@
 
 ;; (add-hook 'scala-mode-hook 'set-junk-directory)
 ;; (setq (make-local-variable 'open-junk-file-directory) "~/.emacs.d/cache/junk/%Y/%m/%d-%H%M%S.sc")
+
+(push '("*meghanada-typeinfo*" :dedicated t :position right :stick t :noselect nil :width 0.4)
+		   popwin:special-display-config)
+
+(push '("*helm-imenu*" :dedicated t :position right :stick t :noselect nil :width 0.4)
+		   popwin:special-display-config)
+
+(defvar zen:java-test-suffixes '("Spec.groovy", "Test.groovy", "Test.java"))
+
+(defun zen:spock-jump-to-testcase ()
+  "Jumps to spock spec by assuming the name of the file being similar to the original file plus spec."
+  (interactive)
+  (let ((name (concat (file-name-nondirectory (file-name-sans-extension (buffer-file-name))) "Spec.groovy")))
+    (when (file-exists-p name)
+      (find-file name))))
+
+;; Meghanada snippet changed in order to load spec.groovy and test.groovy files
+(defun zen:meghanada--switch-testcase-callback (result)
+  "TODO: FIX DOC OUT."
+  (let ((filtered (replace-regexp-in-string "\/java" "\/groovy" result)))
+    (message filtered)))
+  ;; (when (and result (file-exists-p result))
+  ;;   (find-file result)))
+
+(defun zen:meghanada-switch-testcase ()
+  "TODO: FIX DOC CALLBACK."
+  (interactive)
+  (if (and meghanada--server-process (process-live-p meghanada--server-process))
+      (meghanada--send-request "st" #'zen:meghanada--switch-testcase-callback (buffer-file-name))
+    (message "client connection not established")))
+
 (provide 'zen-java)
 ;;; zen-java ends here

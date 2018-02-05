@@ -137,7 +137,7 @@
 (defvar evil-command) ;; Second leader key for specific mode keys
 
 (setq evil-leader "SPC")
-(setq evil-command ",")
+(setq evil-command "#")
 (imap "C-c" 'evil-normal-state)
 (vmap "C-c" 'evil-normal-state)
 (nmap ";;" 'evil-ex)
@@ -272,6 +272,14 @@
 (general-define-key :states '(insert)
 		    :keymaps '(yas-minor-mode-map)
 		    "C-g" 'yas-expand-snippet)
+
+;;------------------------------------------------------------------------------
+;;                               Hydra minor mode
+;;------------------------------------------------------------------------------
+
+(use-package hydra
+  :ensure t
+  :defer t)
 
 (provide 'zen-evil)
 ;;; zen-evil ends here
