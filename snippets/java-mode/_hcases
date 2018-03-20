@@ -7,6 +7,7 @@ import java.util.*;
 import java.text.*;
 import java.math.*;
 import java.util.regex.*;
+import java.util.function.*;
 
 public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`} {
     static String solve() {
@@ -21,5 +22,6 @@ public class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file
 	    String result = solve();
 	    System.out.println(result);
 	}
+	in.close();
     }
 }

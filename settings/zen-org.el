@@ -51,8 +51,12 @@
       '(("" "unicode-math" t)
 	("xindy" "glossaries" t)
 	("" "tikz" t)
+	("" "tikz-uml" t)
 ;	("" "minted" t) put it on each class
-	("" "subcaption" t)))
+	("" "subcaption" t)
+	("" "floatrow" t)))
+
+(setq org-format-latex-options '(:foreground "black" :background "white"))
 
 (setq org-latex-compiler "lualatex"
       org-latex-bib-compiler "biber"
@@ -484,4 +488,42 @@ BODY lambda to be evaluated"
 	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(add-to-list 'org-latex-classes
+	     '("design-docs"
+	       "\\documentclass{srcreprt}
+\\usepackage{natbib}
+\\usepackage[cachedir=.]{minted}
+\\usepackage[xindy]{glossaries}
+\\renewcommand{\listingscaption}{Algorithm}
+\\newcommand\listingautorefname{Algorithm}
+\\renewcommand\sectionautorefname{Section}
+\\renewcommand\figureautorefname{Fig.}
+\\journal{Engineering Applications of Artificial Intelligence}
+\\usepackage{mathrsfs}
+\\usepackage{subcaption}
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\usepackage{tabu}
+\\floatsetup[table]{style=ruled, heightadjust=all, valign=b, precode=none, midcode=thickrule, postcode=thickrule}
+\\captionsetup[table]{name=Table, indention=-3pt, singlelinecheck=false, labelfont=bf, labelsep=newline, format=plain, skip=5pt}
+\\captionsetup[figure]{name=Fig., labelfont=bf, labelsep=period}
+\\floatsetup[listing]{style=ruled, heightadjust=all, valign=b, precode=none, midcode=thickrule, postcode=thickrule}
+\\captionsetup[listing]{name=Algorithm, indention=0pt, singlelinecheck=false, labelfont=bf, labelsep=newline, format=plain}
+\\def\\equationautorefname~#1\\null{ Equation~(#1)\\null }
+\\newfontfamily\\bodyfont{Hack}
+[DEFAULT-PACKAGES]
+[NO-PACKAGES]
+\\hypersetup{
+    colorlinks = true,
+    linkbordercolor = {cyan},
+    allbordercolors = {white},
+}
+[EXTRA] "
+	       ("\\section{%s}" . "\\section*{%s}")
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 (provide 'zen-org)

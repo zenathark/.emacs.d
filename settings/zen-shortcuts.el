@@ -299,56 +299,78 @@ After evaluating the last sexp, it is replaced by its result."
 		    "gd" 'meghanada-jump-declaration
 		    "gb" 'meghanada-back-jump)
 
-(defhydra hydra-java (:hint nil :exit q)
-"
-^Build^          ^Code Info^             ^Meghanada Actions^
-^^^^^^-------------------------------------------------------
-_c_: compile     _y_: type               _m_: meghanada restart
-_t_: test        _i_: optimize import    _R_: meghanada reference
-_r_: run task    _g_: Magit              _z_: leave
-					 _q_: exit
-"
-  ("c" hydra-java-compile/body)
-  ("t" hydra-java-test/body)
-  ("r" meghanada-run-task)
-  ("y" meghanada-typeinfo)
-  ("i" meghanada-optimize-import)
-  ("m" meghanada-restart)
-  ("R" meghanada-reference)
-  ("g" magit-status)
-  ("z" nil "leave")
-  ("q" exit "quit" :color blue))
+;; (defhydra hydra-java (:hint nil :exit q)
+;; "
+;; ^Build^          ^Code Info^             ^Actions^
+;; ^^^^^^-------------------------------------------------------
+;; _c_: compile      _g_: Go to             _z_: leave
+;; _t_: test         _G_: Magit             _q_: exit
+;; _r_: run task
 
-(defhydra hydra-java-compile (:hint nil :exit q)
-"
-^Compile^
-^^^^^^-----------
-_c_: file
-_t_: project
-_z_: leave
-_q_: quit
-"
-  ("c" meghanada-compile-file)
-  ("t" meghanada-compile-project)
-  ("z" nil "leave")
-  ("q" exit "quit" :color blue))
+;; "
+;;   ("c" zen:gradle-compile-java)
+;;   ("t" hydra-java-test/body)
+;;   ("r" gradle-run)
+;;   ("g" hydra-java-go/body)
+;;   ("G" magit-status)
+;;   ("z" nil "leave")
+;;   ("q" exit "quit" :color blue))
 
-(defhydra hydra-java-test (:hint nil :exit q)
-"
-^Tests^
-^^^^^^-----------
-_c_: Switch JUnit test case
-_C_: Run JUnit class
-_c_: Run JUnit test case
-_r_: Run task
-_z_: leave
-_q_: quit
-"
-  ("s" meghanada-switch-testcase)
-  ("C" meghanada-run-junit-class)
-  ("c" meghanada-run-junit-test-case)
-  ("r" meghanada-run-junit-recent)
-  ("z" nil "leave")
-  ("q" exit "quit" :color blue))
+;; (defun zen:gradle-compile-java ()
+;;   (interactive)
+;;   (gradle-execute "compileJava"))
+
+;; (defun zen:gradle-db-single-test ()
+;;   (interactive)
+;;   (let ((test-name (read-string "Test Class:")))
+;;     (gradle-execute (concat "test --debug-jvm --tests " test-name))))
+
+;; (defhydra hydra-java-go (:hint nil :exit q)
+;; "
+;; ^Find^
+;; ^^^^^^-------------------------------------------------------
+;; _t_: Tag             _s_: Symbol          _T_: Tag from here
+;; _r_: Ref             _g_: Pattern         _P_: File
+;; _o_: Tag on other    _f_: Parse           _z_: leave
+;;		     _*_: Back		  _q_: exit
+;; "
+;;   ("T" helm-source-gtags-find-tag-from-here)
+;;   ("*" helm-gtags-pop-stack)
+;;   ("P" helm-gtags-find-files)
+;;   ("f" helm-gtags-parse-file)
+;;   ("g" helm-gtags-find-pattern)
+;;   ("s" helm-gtags-find-symbol)
+;;   ("r" helm-gtags-find-rtag)
+;;   ("t" helm-gtags-find-tag)
+;;   ("o" helm-gtags-find-tag-other-window)
+;;   ("z" nil "leave")
+;;   ("q" exit "quit" :color blue))
+
+;; (defhydra hydra-java-compile (:hint nil :exit q)
+;; "
+;; ^Compile^
+;; ^^^^^^-----------
+;; _c_: file
+;; _t_: project
+;; _z_: leave
+;; _q_: quit
+;; "
+;;   ("c" ensime-sbt-do-compile)
+;;   ("z" nil "leave")
+;;   ("q" exit "quit" :color blue))
+
+;; (defhydra hydra-java-test (:hint nil :exit q)
+;; "
+;; ^Tests^
+;; ^^^^^^-----------
+;; _t_: Run single test
+;; _T_: Run all tests
+;; _z_: leave
+;; _q_: quit
+;; "
+;;   ("T" gradle-test)
+;;   ("t" gradle-single-test)
+;;   ("z" nil "leave")
+;;   ("q" exit "quit" :color blue))
 (provide 'zen-shortcuts)
 ;;; zen-shortcuts ends here
