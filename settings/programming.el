@@ -219,9 +219,6 @@
 
 (diminish undo-tree-mode)
 
-(use-package modeline-posn
-  :ensure t)
-
 (use-package fill-column-indicator
   :ensure t)
 
