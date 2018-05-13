@@ -9,7 +9,9 @@
   :ensure t)
 
 (use-package docker-tramp
-  :ensure t)
+  :ensure t
+  :config
+  (setq docker-tramp-method "winpty docker"))
 
 (defhydra hydra-docker (:hint nil)
   "
@@ -32,6 +34,15 @@ _e_: unpause     _i_: images  _o_: stop
   ("s" docker-start)
   ("z" nil "leave")
   ("q" quit-window "quit" :color blue))
+
+(cond
+ ((string-equal system-type "windows-nt")
+  (progn
+    ;(setq tramp-default-method "plink")
+					;(setq python-shell-interpreter "root@localhost#2222:/usr/bin/python")
+    (custom-set-variables '(docker-tramp-docker-executable "powershell docker"))))
+ ((string-equal system-type "darwin")
+  (setq tramp-default-method "ssh")))
 
 (provide 'zen-docker)
 ;;; zen-docker ends here

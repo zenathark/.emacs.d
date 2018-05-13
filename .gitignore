@@ -6,6 +6,11 @@
 
 # Backup files
 *~
+.local/
+el-get/
+elpaz/
+tramp
+
 
 # Undo-tree save-files
 *.~undo-tree
