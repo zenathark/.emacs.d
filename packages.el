@@ -1,6 +1,7 @@
 ;;; packages.el --- list of packages for installation using quelpa
 (add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 
+
 (unless (require 'el-get nil 'noerror)
   (require 'package)
   (add-to-list 'package-archives
@@ -33,7 +34,8 @@
 (el-get-bundle nlinum)
 (el-get-bundle nlinum-hl)
 (el-get-bundle nlinum-relative)
-(el-get-bundle base16-theme)
+(el-get-bundle base16-theme
+  :features nil)
 ;(el-get-bundle )
 ;(el-get-bundle )
 
@@ -49,7 +51,8 @@
 (el-get-bundle wgrep)
 (el-get-bundle editorconfig)
 (el-get-bundle undo-tree)
-(el-get-bundle smartparens)
+(el-get-bundle smartparens
+  :features nil)
 
 ;; evil
 (el-get-bundle general)
