@@ -126,6 +126,7 @@ ability to invoke the debugger in debug mode."
   (add-to-list 'load-path zen-package-load-path)
 
   (load! zcore-lib)
+  (load! zcore-os)
   
 
   (unless noninteractive

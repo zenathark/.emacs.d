@@ -10,13 +10,19 @@
 (defvar zen-theme 'base16-onedark
   "Theme to load")
 
-(defvar zen-font "Fira Code-11"
+(defvar zen-font 
+  (cond (IS-WINDOWS "Fira Code-11")
+        (IS-MAC "Fira Code-12"))
   "Default font of the buffer")
 
-(defvar zen-variable-pitch-font "Fira Sans-15"
+(defvar zen-variable-pitch-font
+  (cond (IS-WINDOWS "Fira Sans-15")
+        (IS-MAC "Fira Sans-15"))
   "Default font for the status bar")
 
-(defvar zen-unicode-font "DejaVu Sans-11"
+(defvar zen-unicode-font 
+  (cond (IS-WINDOWS "DejaVu Sans-11")
+        (IS-MAC "DejaVu Sans-12"))
   "glyphs font")
 
 (setq-default
