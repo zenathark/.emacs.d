@@ -14,16 +14,16 @@
  '(org-preview-latex-process-alist
    (quote
     ((imagemagick :programs
-		  ("latex" "convert")
-		  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
-		  (1.0 . 1.0)
-		  :latex-compiler
-		  ("latexmk -pdflatex=lualatex -quiet -shell-escape -pdf -outdir=%o %f")
-		  :image-converter
-		  ("convert -trim -density 300 -shave 1x1 %f -quality 100 %O")))))
+                  ("latex" "convert")
+                  :description "pdf > png" :message "you need to install the programs: latex and imagemagick." :use-xcolor t :image-input-type "pdf" :image-output-type "png" :image-size-adjust
+                  (1.0 . 1.0)
+                  :latex-compiler
+                  ("latexmk -pdflatex=lualatex -quiet -shell-escape -pdf -outdir=%o %f")
+                  :image-converter
+                  ("convert -trim -density 300 -shave 1x1 %f -quality 100 %O")))))
  '(package-selected-packages
    (quote
-    (all-the-icons dockefile dockefile-mode nose helm-pydoc yapfify stickyfunc-enhace pylookup py-isort pip-requirements hy-mode cython-mode anaconda-mode dockerfile-mode docker json-mode js2-mode hydra-mode meghanada realgud highlight-symbol google-c-style google-set-c-style autodisass-java-bytecode java-mode groovy-mode gradle-mode flycheck-rust racer cargo imenu-list flycheck-pos-tip company-ycmd company-ymcd eval-sexp-fu yaml-mode julia-mode company-go go-eldoc go-mode helm-mode-manager helm-make helm-projectile helm-gtags counsel-gtags ggtags company-quickhelp racket-mode quack geiser fontawesome haskell-mode web-beautify emmet-mode org-plus-contrib fill-column-indicator modeline-posn julia-repl ein tide pyenv-mode-auto pyenv-mode web-mode cider clojure-mode popup ivy org-ref helm-core company-flx flx ensime ivy-rich xcscope srefactor aggressive-indent auto-highlight-symbol clean-aindent-mode stickyfunc-enhance popwin counsel swiper orgit git-timemachine git-messenger git-link gitconfig-mode gitattributes-mode gitignore-mode evil-magit magit page-break-lines projectile whitespace-cleanup-mode company-statistics company yasnippet smartparens sublimity flycheck exec-path-from-shell highlight-parentheses highlight-numbers open-junk-file rainbow-delimiters vi-tilde-fringe evil-search-highlight-persist evil-matchit evil-exchange evil-anzu evil-visualstar evil-surround evil-nerd-commenter evil-org evil-numbers ace-window ace-link general powerline evil hlinum base16-theme s dash use-package)))
+    (evil-vimish-fold evil-textobj-anyblock evil-multiedit evil-mc evil-indent-plus evil-embrace evil-easymotion nlinum-relative nlinum-hl nlinum shrink-path all-the-icons dockefile dockefile-mode nose helm-pydoc yapfify stickyfunc-enhace pylookup py-isort pip-requirements hy-mode cython-mode anaconda-mode dockerfile-mode docker json-mode js2-mode hydra-mode meghanada realgud highlight-symbol google-c-style google-set-c-style autodisass-java-bytecode java-mode groovy-mode gradle-mode flycheck-rust racer cargo imenu-list flycheck-pos-tip company-ycmd company-ymcd eval-sexp-fu yaml-mode julia-mode company-go go-eldoc go-mode helm-mode-manager helm-make helm-projectile helm-gtags counsel-gtags ggtags company-quickhelp racket-mode quack geiser fontawesome haskell-mode web-beautify emmet-mode org-plus-contrib fill-column-indicator modeline-posn julia-repl ein tide pyenv-mode-auto pyenv-mode web-mode cider clojure-mode popup ivy org-ref helm-core company-flx flx ensime ivy-rich xcscope srefactor aggressive-indent auto-highlight-symbol clean-aindent-mode stickyfunc-enhance popwin counsel swiper orgit git-timemachine git-messenger git-link gitconfig-mode gitattributes-mode gitignore-mode evil-magit magit page-break-lines projectile whitespace-cleanup-mode company-statistics company yasnippet smartparens sublimity flycheck exec-path-from-shell highlight-parentheses highlight-numbers open-junk-file rainbow-delimiters vi-tilde-fringe evil-search-highlight-persist evil-matchit evil-exchange evil-anzu evil-visualstar evil-surround evil-nerd-commenter evil-org evil-numbers ace-window ace-link general powerline evil hlinum base16-theme s dash use-package)))
  '(safe-local-variable-values
    (quote
     ((python-shell-interpreter . "plink:root@localhost#2222:/usr/bin/python")
@@ -51,20 +51,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(setq package-enable-at-startup nil)
 
-(require 'package)
-(setq
- package-archives '(("melpa" . "http://melpa.org/packages/")
-		    ("gnu" . "http://elpa.gnu.org/packages/")
-		    ("org" . "http://orgmode.org/elpa/")
-		    ("melpa-stable" . "http://stable.melpa.org/packages/")))
-
-;(package-initialize)
+(package-initialize)
+(setq package-enable-at-startup nil)
 ;(when (not package-archive-contents)
 ;  (package-refresh-contents)
 ;  (package-install 'use-package))
-(setq package-enable-at-startup nil)
-
 ;; Bootstrap use-package
 ;(unless (package-installed-p 'use-package)
 ;  (package-refresh-contents)

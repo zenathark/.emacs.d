@@ -159,5 +159,51 @@ compilation."
     (with-eval-after-load ',feature ,@forms)))
 
 
+(defvar zen--transient-counter 0)
+(defmacro add-transient-hook! (hook &rest forms)
+  "Attaches transient forms to a HOOK.
+HOOK can be a quoted hook or a sharp-quoted function (which will be advised).
+These forms will be evaluated once when that function/hook is first invoked,
+then it detaches itself."
+  (declare (indent 1))
+  (let ((append (eq (car forms) :after))
+        (fn (intern (format "zen-transient-hook-%s" (cl-incf zen--transient-counter)))))
+    `(when ,hook
+       (fset ',fn
+             (lambda (&rest _)
+               ,@forms
+               (cond ((functionp ,hook) (advice-remove ,hook #',fn))
+                     ((symbolp ,hook)   (remove-hook ,hook #',fn)))
+               (unintern ',fn nil)))
+       (cond ((functionp ,hook)
+              (advice-add ,hook ,(if append :after :before) #',fn))
+             ((symbolp ,hook)
+              (add-hook ,hook #',fn ,append))))))
+
+(defun zen-unquote (exp)
+  "Return EXP unquoted."
+  (while (memq (car-safe exp) '(quote function))
+    (setq exp (cadr exp)))
+  exp)
+
+(defun load-directory! (dir)
+  (let ((load-it (lambda (f)
+                   (load-file (concat (file-name-as-directory dir) f)))
+                 ))
+	(mapc load-it (directory-files dir nil "\\.el$"))))
+
+(defun zen-enlist (exp)
+  "Return EXP wrapped in a list, or as-is if already a list."
+  (if (listp exp) exp (list exp)))
+
+(defun autoload-dir (dir)
+  (update-directory-autoloads dir)
+  (mapc 'load (seq-drop (directory-files dir t) 2)))
+
+(defun autoload-dir! (dir)
+  (let ((autoload-dir (concat default-directory "/" dir)))
+    (update-directory-autoloads autoload-dir)
+    (mapc 'load (seq-drop (directory-files autoload-dir t) 2))))
+
 (provide 'zcore-lib)
 ;;; zcore-lib.el ends here

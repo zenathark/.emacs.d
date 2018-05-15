@@ -25,6 +25,9 @@
 (defvar zen-package-load-path (concat zen-emacs-dir "el-get/")
   "Packages folder")
 
+(defvar zen--package-load-path (concat zen-emacs-dir "elpa/")
+  "Elpa dir")
+
 (defvar zen-etc-dir (concat zen-local-dir "etc/")
   "Non-volatile folder")
 
@@ -32,6 +35,10 @@
 (defvar zen-autoload-file (concat zen-local-dir "autoloads.el")
   "Autoload files folder location")
 (setq generated-autoload-file zen-autoload-file)
+(defvar zen-module-load-path (concat zen-emacs-dir "modules"))
+(defvar zen-active-modules '("feature/evil"
+                             "lang/latex"
+                             "lang/org"))
 
 (defvar zen-core-dir (concat zen-emacs-dir "zcore/")
   "Configuration directory")
@@ -133,9 +140,12 @@ ability to invoke the debugger in debug mode."
     (load! zcore-ui)
     (load! zcore-popups)
     (load! zcore-editor)
+    (load! zcore-keybinds)
     (load! zcore-keybindings))
 
-  (load! autoloads)
+  (load-modules!)
+
+  (autoload-dir (concat zen-emacs-dir "/autoload"))
   
   (add-hook 'after-change-major-mode-hook 'remove-scratch-buffer)
   (add-hook 'zen-init-hook 'new-empty-buffer)

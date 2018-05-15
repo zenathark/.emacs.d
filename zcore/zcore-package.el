@@ -1,17 +1,12 @@
 ;; zcore-package.el --- Package utilities
+(setq package-enable-at-startup nil)
 
-(package-initialize)
-
-;(add-to-list 'load-path (concat zen-package-load-path "el-get/"))
-;(add-to-list 'load-path (concat zen-package-load-path "use-package/"))
-;(add-to-list 'load-path (concat zen-package-load-path "use-package-el-get/"))
 (setq load-path (append (seq-drop (directory-files (concat zen-package-load-path nil ".") t) 5)
 			load-path))
+(package-initialize)
 
 (require 'use-package)
-;(require 'use-package-el-get)
 (setq use-package-always-ensure nil)
-;(use-package-el-get-setup)
 
 (defmacro load! (filesym &optional path noerror)
   "Load a file relative to the current executing file (`load-file-name').
@@ -72,6 +67,11 @@ to have them return non-nil (or exploit that to overwrite Doom's config)."
               ,@body)))
         (t
          (error "'%s' isn't a valid hook for def-package-hook!" when))))
+
+
+(defun load-modules! ()
+  (mapc (lambda (d) (load (concat zen-module-load-path "/" d "/config.el"))) zen-active-modules))
+
 
 (provide 'zcore-package)
 ;;; zcore-package.el ends here
